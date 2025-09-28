@@ -62,9 +62,9 @@
   "Lua": "Lua",
   "Bootstrap": "Bootstrap",
   "Bachelor_Degree": "Bacharel",
-  "Information_Systems": "Information Systems", 
+  "Information_Systems": "Sistemas de Informação", 
   "Postgraduate": "Pós-Graduação",
-  "MBA_Software_Quality_Management": "MBA – Software Quality Management",
+  "MBA_Software_Quality_Management": "MBA – Gestão da Qualidade em Software",
   "In_progress_Faveni": "2024 – Andamento",
   "Technical_Skills": "Habilidades Técnicas",
   "Languages_program": "Linguagens: JavaScript, TypeScript, Python (Básico), Java (Básico), C# (Básico)",
@@ -111,6 +111,6 @@
   "Subtitle_Testing_Frontend_Backend": "Testes Automatizado Frontend & Backend",
   "Title_Test_Portfolio": "Portfólio de Teste",
   "Subtitle_My_Portfolio": "Meu Portfólio",
-  "Intensive_Courses": "Intensive Courses"
+  "Intensive_Courses": "Cursos Intensivos"
 }
 

@@ -1,0 +1,33 @@
+{
+  "AbaName": "Ericton - Garantia de Qualidade",
+  "Experience": "Experiência",
+  "Education": "Educação",
+  "Projects": "Projetos",
+  "Contact": "Contato",
+  "QA": "Analista de Teste/QA & Desenvolvedor Full Frontend",
+  "City": "Localizado no Manaus/AM 🏖",
+  "Experience-Text": "Desenvolver projetos de automação de testes no Frontend e Backend Cypress, K6, Locust, e JavaScript/Typescript. Para aplicações web.",
+  "Current": "Jun/2025 – Atual",
+  "Current_2": "Jan/2025 – Maio/2025",
+  "Quality-Analyst": "Analista de Qualidade PL",
+  "Test-Analyst-QA-PJ": "Analista de Teste/QA PL",
+  "Desc-Experience_1": "Execução de testes funcionais e não funcionais (manuais e automatizados) em APIs, performance, stress e carga. Automação de testes com Cypress e K6, integração com Python/DuckDB para gestão de grandes volumes de dados. Gerenciamento de falhas no Jira, versionamento no GitLab e execução de testes de regressão com Jenkins e Docker. Validação de dados em Power BI, garantindo consistência frente às fontes originais.",
+  "Manual-Test": "Teste Manual",
+  "Automated-Testing": "Teste Automatizado",
+  "Continuous-Integration-Testing": "Teste Integração Contínua",
+  "Functional-Testing": "Teste Funcionais",
+  "Non-Functional-Testing": "Teste Não Funcionais",
+  "API-Testing": "Teste de API",
+  "Cypress": "Cypress",
+  "K6": "K6",
+  "Javacript": "Javacript",
+  "Typescript": "Typescript",
+  "Python": "Python",
+  "Desc-Expecience_2": "Elaboração de planos e cadernos de teste, execução de testes manuais funcionais e não funcionais. Mentoria para QAs juniores e acompanhamento de atividades no Azure DevOps.",
+  "Prepare-Test-Plan": "Elaborar Plano de Teste",
+  "Prepare-Test-Suite": "Elaborar Caderno de Teste", 
+  "Azure-DevOps": "Azure DevOps",
+  "developer": "Desenvolvido por Ericton Brito."
+
+}
+

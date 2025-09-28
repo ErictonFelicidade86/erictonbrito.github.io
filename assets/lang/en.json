@@ -1,0 +1,34 @@
+{
+  "abaName": "Ericton - Quality Assurance",
+  "Experience": "Experience",
+  "Education": "Education",
+  "Contact": "Contact",
+  "Projects": "Projects",
+  "QA": "Test Analyst/QA and Full FrontEnd Developer",
+  "City": "Located in Manaus/AM 🏖",
+  "Experience-Text": "Develop test automation projects in frontend and backend applications such as Cypress, K6, Locust, and JavaScript/Typescript. For web applications.",
+  "Current": "Jun/2025 – Current",
+  "Current_2": "Jan/2025 – May/2025",
+  "Quality-Analyst": "PL Quality Analyst",
+  "Test-Analyst-QA-PJ": "Test Analyst/QA PL",
+  "Desc-Experience_1": "Execution of functional and non-functional tests (manual and automated) in APIs, performance, stress, and load. Test automation with Cypress and K6, integration with Python/DuckDB for managing large volumes of data. Failure management in Jira, versioning in GitLab, and execution of regression tests with Jenkins and Docker. Data validation in Power BI, ensuring consistency against the original sources.",
+  "Manual-Test": "Manual Test",
+  "Automated-Testing": "Automated Testing",
+  "Continuous-Integration-Testing": "Continuous Integration Testing",
+  "Functional-Testing": "Functional Testing",
+  "Non-Functional-Testing": "Non Functional Testing",
+  "API-Testing": "API-Testing",
+  "Cypress": "Cypress",
+  "K6": "K6",
+  "Javacript": "Javacript",
+  "Typescript": "Typescript",
+  "Python": "Python",
+  "Desc-Expecience_2": "Elaboration of test plans and test suites, execution of manual functional and non-functional tests. Mentorship for junior QAs and monitoring of activities in Azure DevOps.",
+  "Prepare-Test-Plan": "Prepare Test Plan",
+  "Prepare-Test-Suite": "Prepare Test Suite", 
+  "Azure-DevOps": "Azure DevOps",
+  "developer": "Developed by Ericton Brito"
+
+
+
+}

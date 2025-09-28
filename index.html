@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ericton - Quality Assurence</title>
+  <title data-i18n="AbaName"></title>
+  <!-- <title>Ericton - Quality Assurence</title> -->
   <!-- Icon -->
   <link rel="icon" href="./img/bug.png" type="image/x-icon">
   <meta name="description" content="Analista de Teste/QA & Frontend Localizado no Manaus/AM">
@@ -22,33 +23,33 @@
       <ul class="header-menu">
         <li>
           <a href="#experiencia">
-            <strong>Experiência</strong>
+            <strong data-i18n="Experience"></strong>
           </a>
         </li>
         <li>
           <a href="#formacao">
-            <strong>Formação</strong>
+            <strong data-i18n="Education"></strong>
           </a>
         </li>
         <li>
           <a href="#projeto">
-            <strong>Projetos</strong>
+            <strong data-i18n="Projects"></strong>
           </a>
         </li>
         <li>
           <a href="#contato">
-            <strong>Contato</strong>
+            <strong data-i18n="Contact"></strong>
           </a>
         </li>
         <li>
-            <!-- <div class="language-switcher">
-              <img src="../portfolio/img/brasil.png" alt="Português" style="width: 30px; cursor: pointer; margin-right: 38px;">
-            </div> -->
+            <div class="language-switcher">
+              <img src="./img/brasil.png" alt="Português" onclick="setLanguage('pt')" style="width: 30px; cursor: pointer; margin-right: 38px;">
+            </div>
         </li>
         <li>
-            <!-- <div class="language-switcher">
-              <img src="../portfolio/img/usa.png" alt="English" style="width: 30px; cursor: pointer;">
-            </div> -->
+            <div class="language-switcher">
+              <img src="./img/usa.png" alt="English" onclick="setLanguage('en')" style="width: 30px; cursor: pointer;">
+            </div>
         </li>
       </ul>
     </nav>
@@ -57,59 +58,54 @@
   <main class="introducao">
     <img src="./img/perfil.png" alt="Caçador" width="360" height="520">
     <div>
-      <h1>Analista de Teste/QA<br>Desenvolvedor Full & FrontEnd</h1>
-      <p>Localizado no Manaus/AM 🏖</p>
+      <h1 data-i18n="QA"></h1>
+      <p data-i18n="City"></p>
     </div>
   </main>
 
   <section class="experiencia" id="experiencia" aria-label="Experiência">
-    <h2 class="subtitulo">Experiência</h2>
+    <h2 class="subtitulo" data-i18n="Experience">Experiência</h2>
     <div>
-      <p class="experiencia-texto">Desenvolvo projetos de testes automatizado de Frontend & Backend <strong>Cypress</strong>, <strong>K6</strong>, <strong>Locust</strong> e <strong>JavaScript/Typescript</strong>. Para aplicações web.</p>
+      <p class="experiencia-texto" data-i18n="Experience-Text">Desenvolvo projetos de automação de testes no Frontend & Backend <strong>Cypress</strong>, <strong>K6</strong>, <strong>Locust</strong> e <strong>JavaScript/Typescript</strong>. Para aplicações web.</p>
 
       <div class="empresa">
-        <span class="empresa-ano">Jun/2025 – Atual</span>
-        <h3 class="empresa-titulo">NEOWAY - Atualmente</h3>
-        <span class="empresa-titulo">Analista de Qualidade Pleno</span>
-        <p class="empresa-texto">
-          Execução de testes funcionais e não funcionais (manuais e
-          automatizados) em APIs, performance, stress e carga.
-          Automação de testes com Cypress e K6, integração com
-          Python/DuckDB para gestão de grandes volumes de dados.
-          Gerenciamento de falhas no Jira, versionamento no GitLab e
-          execução de testes de regressão com Jenkins e Docker.
-          Validação de dados em Power BI, garantindo consistência frente
-          às fontes originais.</p>
+        <span class="empresa-ano" data-i18n="Current"></span>
+        <h3 class="empresa-titulo">NEOWAY</h3>
+        <span class="empresa-titulo" data-i18n="Quality-Analyst"></span>
+        <p class="empresa-texto" data-i18n="Desc-Experience_1"></p>
         <ul class="empresa-habilidades">
-          <li>Teste Manual</li>
-          <li>Teste Automatizado</li>
-          <li>Teste Integração Contínua</li>
-          <li>Teste Funcionais</li>
-          <li>Teste Não Funcionais</li>
-          <li>Teste de API</li>
-          <li>Cypress</li>
-          <li>K6</li>
-          <li>JavaScript</li>
-          <li>Python</li>
+          <li data-i18n="Manual-Test"></li>
+          <li data-i18n="Automated-Testing"></li>
+          <li data-i18n="Continuous-Integration-Testing">Teste Integração Contínua</li>
+          <li data-i18n="Functional-Testing">Teste Funcionais</li>
+          <li data-i18n="Non-Functional-Testing">Teste Não Funcionais</li>
+          <li data-i18n="API-Testing">Teste de API</li>
+          <li data-i18n="Cypress">Cypress</li>
+          <li data-i18n="K6">K6</li>
+          <li data-i18n="Javacript">JavaScript</li>
+          <li data-i18n="Python">Python</li>
         </ul>
       </div>
 
       <div class="empresa">
-        <span class="empresa-ano">Jan/2025 – Maio/2025</span>
+        <!-- Perído de Experiência -->
+        <span class="empresa-ano" data-i18n="Current_2"></span>
         <h3 class="empresa-titulo">ZDZCODE PJ</h3>
-        <span class="empresa-titulo">Analista de Teste/QA - Pleno</span>
-        <p class="empresa-texto">
-          Elaboração de planos e cadernos de teste, execução de
-          testes manuais funcionais e não funcionais.
-          Mentoria para QAs juniores e acompanhamento de atividades
-          no Azure DevOps.
-        </p>
+        <!-- Analista de Teste/QA Pleno -->
+        <span class="empresa-titulo" data-i18n="Test-Analyst-QA-PJ"></span>
+        <!-- Descrição da Experiência -->
+        <p class="empresa-texto" data-i18n="Desc-Expecience_2"></p>
         <ul class="empresa-habilidades">
-          <li>Elaborar Plano de Teste</li>
-          <li>Elaborar Caderno de Teste</li>
-          <li>Teste Manual</li>
-          <li>Teste Funcional</li>
-          <li>Azure DevOps</li>
+          <!-- Elaborar Plano de Teste -->
+          <li data-i18n="Prepare-Test-Plan"></li>
+          <!-- Elaborar Caderno de Teste --> 
+          <li data-i18n="Prepare-Test-Suite"></li>
+          <!-- Teste Manual --> 
+          <li data-i18n="Manual-Test"></li> 
+          <!-- Teste Funcional -->
+          <li data-i18n="Functional-Testing"></li>
+          <!-- Azure DevOps --> 
+          <li data-i18n="Azure-DevOps"></li> 
         </ul>
       </div>
 
@@ -250,7 +246,7 @@
 
   <section class="formacao" id="formacao" aria-label="Formação">
     <div class="formacao-container">
-      <h2 class="subtitulo">Formação</h2>
+      <h2 class="subtitulo">Educação</h2>
 
       <div>
         <p class="formacao-texto">
@@ -425,10 +421,13 @@
           <i class="bx bxl-linkedin"></i>
           <a style="text-decoration: none; font-weight: bold;" title="LinkedIn" target="_blank" href="https://www.linkedin.com/in/ericton-brito-1b511b14b/">Ericton Brito</a></li>
       </ul>
-      <p class="footer-copy">Desenvolvido por Ericton Brito.</p>
+      <!-- Desenvolvido por Ericton Brito. -->
+      <p class="footer-copy" data-i18n="developer"></p>
     </div>
   </footer>
 
+  <!-- JavaScript -->
+   <script src="js/i18n.js"></script>
 </body>
 
 </html>

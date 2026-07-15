@@ -1,80 +1,59 @@
-# Currículo 3D — Ericton Brito
+📁 Meu Portfólio Pessoal
 
-Currículo interativo com um avatar 3D central que reage ao **scroll** e a **cliques**.
+Bem-vindo ao repositório do meu portfólio pessoal! 🎉 Este projeto foi desenvolvido para apresentar minhas habilidades técnicas, projetos e trajetória profissional. Ele reflete minha dedicação ao aprendizado contínuo — incluindo a migração deste currículo para uma cena 3D interativa.
 
-## Stack
+## 🚀 Tecnologias Utilizadas
 
-- **Vue 3** (`<script setup>`, Composition API)
-- **Vuetify 3** — layout, cards, timeline, botões
-- **Three.js** — cena 3D, luzes, animação
-- **GSAP** — animações suaves de clique (pulso/escala/cor)
-- **Vite** — build e dev server
+Este portfólio foi construído utilizando uma combinação de tecnologias modernas para Desenvolvimento Web Frontend e Teste de Software:
 
-## Estrutura
+- **Vue 3**: Framework reativo, usando `<script setup>` e Composition API.
+- **TypeScript**: Tipagem estática em modo estrito (`strict`), em todos os componentes e composables.
+- **Vuetify**: Biblioteca de componentes Material Design (app-bar, cards, timeline, grid).
+- **Three.js**: Renderização da cena 3D (mesa, monitor, personagem digitando, sombras reais).
+- **GSAP + ScrollTrigger**: Animações de entrada dos cards conforme o scroll, e as transições de clique/digitação da cena 3D.
+- **vue-i18n**: Internacionalização (PT/EN) com troca de idioma via bandeiras no cabeçalho.
+- **vue-router**: Navegação em hash mode (compatível com hospedagem estática, sem rewrite de servidor).
+- **Vite**: Build e dev server.
+- **Yarn**: Gerenciador de pacotes do projeto.
+- **Blender**: Reservado para os futuros modelos `.glb`/`.gltf` do avatar 3D — hoje o avatar e a mesa são gerados 100% via código (primitivas do Three.js), sem depender de modelo externo.
 
-```
-src/
-  components/
-    Scene3D.vue         # <canvas> que hospeda a cena Three.js
-  composables/
-    useThreeScene.js    # toda a lógica Three.js: cena, câmera, luzes,
-                         # avatar placeholder, scroll e clique
-  data/
-    resume.js            # conteúdo do currículo (experiências, formação, projetos)
-  views/
-    HomeView.vue          # layout Vuetify com todas as seções
-  App.vue                 # app-bar + navegação
-  router/index.js         # hash router (evita 404 no GitHub Pages)
-public/
-  models/                 # <- coloque aqui os .glb/.gltf exportados do Blender
-```
+## 🌐 Destaques do Projeto
 
-## Rodando localmente
+- Cena 3D interativa no topo da página: avatar digitando em uma mesa, com código "rodando" na tela do monitor e do notebook em tempo real.
+- Sombras reais e textura de madeira procedural, deixando o cenário 3D mais fiel a um ambiente real.
+- Animações de entrada (fade + slide) nos cards de Experiência, Formação e Projetos conforme o usuário rola a página.
+- Internacionalização completa (PT/EN) com troca de idioma via bandeiras no menu.
+- Design responsivo para dispositivos móveis, tablets e desktop.
+- Tipagem estática de ponta a ponta com TypeScript.
+
+## 📦 Rodando localmente
 
 ```bash
-npm install
-npm run dev
+yarn install
+yarn dev
 ```
 
-## Build de produção
+## 🏗️ Build de produção
 
 ```bash
-npm run build
+yarn build
 ```
 
 Gera a pasta `dist/`, pronta pra publicar.
 
-## Publicando no GitHub Pages
+---
 
-1. `vite.config.js` já está com `base: './'` (caminhos relativos), então funciona em
-   qualquer nome de repositório sem configuração extra.
-2. Faça o build (`npm run build`) e publique o conteúdo de `dist/` na branch
-   `gh-pages` (ou configure o GitHub Actions para isso).
-3. Opção simples: usar a action `peaceiris/actions-gh-pages` ou o pacote `gh-pages`:
-   ```bash
-   npm install -D gh-pages
-   npx gh-pages -d dist
-   ```
-
-## Trocando o avatar placeholder pelo modelo do Blender
-
-Hoje o avatar é geométrico (núcleo + casca wireframe + partículas), gerado em
-`createPlaceholderAvatar()` dentro de `src/composables/useThreeScene.js`.
-
-Quando o modelo `.glb`/`.gltf` estiver pronto:
-
-1. Exporte do Blender como **glTF 2.0 (.glb)** — formato binário, mais leve.
-2. Coloque o arquivo em `public/models/avatar.glb`.
-3. Troque `createPlaceholderAvatar()` por um carregamento assíncrono com
-   `GLTFLoader` (posso implementar isso assim que tivermos o modelo).
-4. Se o modelo tiver animações (armature actions) exportadas do Blender, dá pra
-   tocá-las com `THREE.AnimationMixer`, inclusive alternando entre "idle",
-   "hover" e "click" conforme a interação.
-
-## Próximos passos sugeridos
-
-- [ ] Trocar avatar placeholder pelo modelo real do Blender
-- [ ] Adicionar loading screen enquanto o modelo `.glb` carrega
-- [ ] Internacionalização (PT/EN) como no site anterior
-- [ ] Code-splitting do Vuetify para reduzir o tamanho do bundle
-- [ ] Deploy automatizado via GitHub Actions
+<p align="left">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" />
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/Vue.js-4FC08D?style=for-the-badge&logo=vuedotjs&logoColor=white" />
+  <img src="https://img.shields.io/badge/Vuetify-1867C0?style=for-the-badge&logo=vuetify&logoColor=white" />
+  <img src="https://img.shields.io/badge/Three.js-000000?style=for-the-badge&logo=threedotjs&logoColor=white" />
+  <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" />
+  <img src="https://img.shields.io/badge/Yarn-2C8EBB?style=for-the-badge&logo=yarn&logoColor=white" />
+  <img src="https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=white" />
+  <img src="https://img.shields.io/badge/Blender-F5792A?style=for-the-badge&logo=blender&logoColor=white" />
+  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" />
+  <img src="https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white" />
+</p>

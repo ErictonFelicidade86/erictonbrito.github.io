@@ -41,6 +41,16 @@ yarn build
 
 Gera a pasta `dist/`, pronta pra publicar.
 
+## 🚢 Deploy (GitHub Pages)
+
+O deploy é automático via GitHub Actions (`.github/workflows/deploy.yml`): a cada push na branch `main`, o workflow instala as dependências, roda `yarn build` e publica o conteúdo de `dist/` no GitHub Pages.
+
+Pré-requisito único (configuração feita uma vez no repositório): em **Settings → Pages → Build and deployment → Source**, selecionar **GitHub Actions**.
+
+Sem isso, o GitHub Pages tende a servir o `index.html` da raiz do repositório (o de desenvolvimento, com `<script src="/src/main.ts">`) em vez do build gerado pelo Vite — o que quebra o carregamento do site.
+
+Para forçar um novo deploy sem dar push, é só rodar o workflow manualmente pela aba **Actions** do repositório (`workflow_dispatch`).
+
 ---
 
 <p align="left">

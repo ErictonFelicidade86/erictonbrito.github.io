@@ -5,19 +5,26 @@
       <Scene3D class="hero-canvas" />
       <v-container class="hero-content" fluid>
         <v-row align="center" class="fill-height" no-gutters>
-          <v-col cols="12" md="6" class="hero-text">
-            <p class="hero-eyebrow">{{ t('hero.greeting') }}</p>
-            <h1 class="hero-name">{{ profile.name }}</h1>
-            <h2 class="hero-role">{{ t('profile.role') }}</h2>
-            <p class="hero-location">{{ t('profile.location') }}</p>
-            <p class="hero-summary">{{ t('profile.summary') }}</p>
-            <div class="hero-actions">
-              <v-btn color="primary" size="large" variant="flat" @click="scrollToSection('experiencia')">
-                {{ t('hero.ctaExperience') }}
-              </v-btn>
-              <v-btn color="secondary" size="large" variant="outlined" @click="scrollToSection('contato')">
-                {{ t('nav.contact') }}
-              </v-btn>
+          <v-col cols="12" md="6">
+            <!-- O painel com fundo/blur fica num wrapper à parte, e não
+                 direto no v-col: o grid do Vuetify define a largura do
+                 v-col via flex-basis (50% no desktop), e isso ignora
+                 qualquer `width` que a gente tente aplicar nele mesmo.
+                 Com o wrapper, o painel encolhe pro tamanho do conteúdo. -->
+            <div class="hero-text">
+              <p class="hero-eyebrow">{{ t('hero.greeting') }}</p>
+              <h1 class="hero-name">{{ profile.name }}</h1>
+              <h2 class="hero-role">{{ t('profile.role') }}</h2>
+              <p class="hero-location">{{ t('profile.location') }}</p>
+              <p class="hero-summary">{{ t('profile.summary') }}</p>
+              <div class="hero-actions">
+                <v-btn color="primary" size="large" variant="flat" @click="scrollToSection('experiencia')">
+                  {{ t('hero.ctaExperience') }}
+                </v-btn>
+                <v-btn color="secondary" size="large" variant="outlined" @click="scrollToSection('contato')">
+                  {{ t('nav.contact') }}
+                </v-btn>
+              </div>
             </div>
           </v-col>
         </v-row>
@@ -211,7 +218,20 @@ function scrollToSection(id: string): void {
 }
 
 .hero-text {
-  padding: 0 24px;
+  position: relative;
+  padding: 24px;
+  border-radius: 16px;
+  /* Largura pelo conteúdo, não pela coluna inteira — senão o painel se
+     estica por cima do avatar/mesa no desktop (a coluna ocupa metade da
+     tela, bem mais larga que o texto). */
+  width: fit-content;
+  max-width: 100%;
+  /* Painel escuro semi-transparente atrás do texto, pra destacar da cena 3D
+     e da chuva Matrix que ficam por trás — sem isso o texto fica ilegível.
+     Sem backdrop-filter/blur de propósito: em alguns navegadores, blur
+     sobre um canvas WebGL atrás (o avatar 3D e a chuva) trava a animação
+     do que está por trás dele. */
+  background: rgba(9, 11, 15, 0.75);
 }
 
 .hero-eyebrow {
@@ -220,6 +240,7 @@ function scrollToSection(id: string): void {
   text-transform: uppercase;
   font-size: 0.85rem;
   margin-bottom: 8px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
 }
 
 .hero-name {
@@ -231,6 +252,7 @@ function scrollToSection(id: string): void {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.9));
 }
 
 .hero-role {
@@ -238,17 +260,29 @@ function scrollToSection(id: string): void {
   font-weight: 500;
   color: rgb(var(--v-theme-secondary));
   margin-bottom: 8px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
 }
 
 .hero-location {
-  opacity: 0.8;
+  opacity: 0.9;
   margin-bottom: 16px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
 }
 
 .hero-summary {
   max-width: 480px;
-  opacity: 0.85;
+  opacity: 0.95;
   margin-bottom: 16px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+@media (max-width: 600px) {
+  .hero-text {
+    /* No mobile a coluna já ocupa a tela toda, então aqui faz sentido o
+       painel ir de ponta a ponta (e quase opaco, pra máxima legibilidade). */
+    width: 100%;
+    background: rgba(9, 11, 15, 0.94);
+  }
 }
 
 .hero-actions {
@@ -295,6 +329,12 @@ function scrollToSection(id: string): void {
   width: 100%;
 }
 
+@media (max-width: 600px) {
+  :deep(.v-timeline--vertical.v-timeline) {
+    row-gap: 40px;
+  }
+}
+
 .experience-card__header {
   flex: 0 0 auto;
 }
@@ -324,12 +364,24 @@ function scrollToSection(id: string): void {
 
 @media (max-width: 600px) {
   .experience-card {
-    height: auto;
-    min-height: 300px;
+    height: auto !important;
+    min-height: 0 !important;
+    margin-bottom: 8px;
+  }
+
+  .experience-card__body {
+    overflow: visible !important;
+    justify-content: flex-start;
   }
 
   .experience-card__description {
-    -webkit-line-clamp: 6;
+    -webkit-line-clamp: unset !important;
+    overflow: visible !important;
+  }
+
+  .experience-card__skills {
+    max-height: none !important;
+    overflow: visible !important;
   }
 }
 

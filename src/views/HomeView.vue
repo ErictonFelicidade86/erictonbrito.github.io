@@ -2,7 +2,7 @@
   <div>
     <!-- Hero: avatar 3D + apresentação -->
     <section class="hero">
-      <Scene3D class="hero-canvas" />
+      <Scene3D v-if="!isMobile" class="hero-canvas" />
       <v-container class="hero-content" fluid>
         <v-row align="center" class="fill-height" no-gutters>
           <v-col cols="12" md="6">
@@ -169,7 +169,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import Scene3D from '../components/Scene3D.vue'
 import { profile } from '../data/resume'
@@ -179,6 +179,27 @@ import type { Experience, Degree, Course, Project } from '../types/resume'
 const { t, tm } = useI18n()
 
 useScrollReveal()
+
+// Mesmo breakpoint mobile usado no CSS (@media max-width: 600px). No
+// celular a cena 3D (mesa + avatar) fica pequena, some atrás do painel de
+// texto e só consome bateria/CPU à toa — por isso nem renderiza lá.
+const MOBILE_QUERY = '(max-width: 600px)'
+const isMobile = ref(false)
+let mobileMediaQuery: MediaQueryList | undefined
+
+function updateIsMobile(): void {
+  isMobile.value = mobileMediaQuery?.matches ?? false
+}
+
+onMounted(() => {
+  mobileMediaQuery = window.matchMedia(MOBILE_QUERY)
+  updateIsMobile()
+  mobileMediaQuery.addEventListener('change', updateIsMobile)
+})
+
+onBeforeUnmount(() => {
+  mobileMediaQuery?.removeEventListener('change', updateIsMobile)
+})
 
 const experiences = computed(() => tm('experience.items') as unknown as Experience[])
 const degrees = computed(() => tm('education.degrees') as unknown as Degree[])

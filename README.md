@@ -1,6 +1,6 @@
 📁 Meu Portfólio Pessoal
 
-Bem-vindo ao repositório do meu portfólio pessoal! 🎉 Este projeto foi desenvolvido para apresentar minhas habilidades técnicas, projetos e trajetória profissional. Ele reflete minha dedicação ao aprendizado contínuo — incluindo a migração deste currículo para uma cena 3D interativa.
+Bem-vindo ao repositório do meu portfólio pessoal! 🎉 Este projeto foi desenvolvido para apresentar minhas habilidades técnicas, projetos e trajetória profissional. Ele reflete minha dedicação ao aprendizado contínuo.
 
 ## 🚀 Tecnologias Utilizadas
 
@@ -25,19 +25,6 @@ Este portfólio foi construído utilizando uma combinação de tecnologias moder
 - Internacionalização completa (PT/EN) com troca de idioma via bandeiras no menu.
 - Design responsivo para dispositivos móveis, tablets e desktop.
 - Tipagem estática de ponta a ponta com TypeScript.
-
-## 📦 Rodando localmente
-
-```bash
-yarn install
-yarn dev
-```
-
-## 🏗️ Build de produção
-
-```bash
-yarn build
-```
 
 Gera a pasta `dist/`, pronta pra publicar.
 
@@ -67,3 +54,7 @@ Para forçar um novo deploy sem dar push, é só rodar o workflow manualmente pe
   <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" />
   <img src="https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white" />
 </p>
+
+## 🌐 Link do Projeto
+
+# [Erictonbrito](https://github.com/ErictonFelicidade86/erictonbrito.github.io)

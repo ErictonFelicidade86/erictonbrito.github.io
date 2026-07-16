@@ -1,5 +1,4 @@
 import * as THREE from 'three'
-import gsap from 'gsap'
 import type { Ref } from 'vue'
 
 /**
@@ -13,9 +12,12 @@ import type { Ref } from 'vue'
  * por um GLTFLoader carregando esse arquivo.
  *
  * Interações:
- *  - idle: leve balanço do personagem, "dedos" digitando, código rolando nas telas
+ *  - idle: leve balanço do personagem, "dedos" digitando, código rolando nas telas sozinho
  *  - scroll: gira sutilmente o diorama e ajusta o zoom da câmera
- *  - clique: dispara uma rajada de "digitação" (linhas novas nas telas + flash de luz)
+ *
+ * (Sem interação de clique: o canvas fica só decorativo, sem capturar
+ * ponteiro/toque, pra não atrapalhar cliques em botões e texto por cima
+ * nem o scroll em telas touch.)
  *
  * Realismo: sombras reais (luz direcional + chão), textura de madeira na
  * mesa, teclado com teclas individuais + mouse, e um personagem com silhueta
@@ -550,9 +552,6 @@ export function useThreeScene(canvasRef: Ref<HTMLCanvasElement | null>) {
   let typeAccumulator = 0
   let nextTypeInterval = 0.4 + Math.random() * 0.4
 
-  const pointer = new THREE.Vector2()
-  const raycaster = new THREE.Raycaster()
-
   function init(): void {
     const canvas = canvasRef.value
     if (!canvas) return
@@ -612,8 +611,6 @@ export function useThreeScene(canvasRef: Ref<HTMLCanvasElement | null>) {
 
     window.addEventListener('resize', resize)
     window.addEventListener('scroll', onScroll, { passive: true })
-    canvas.addEventListener('pointermove', onPointerMove)
-    canvas.addEventListener('click', onClick)
 
     onScroll()
     animate()
@@ -632,43 +629,6 @@ export function useThreeScene(canvasRef: Ref<HTMLCanvasElement | null>) {
   function onScroll(): void {
     const max = document.documentElement.scrollHeight - window.innerHeight
     scrollProgress = max > 0 ? Math.min(window.scrollY / max, 1) : 0
-  }
-
-  function onPointerMove(event: PointerEvent): void {
-    const canvas = canvasRef.value
-    if (!canvas) return
-    const rect = canvas.getBoundingClientRect()
-    pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1
-    pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1
-  }
-
-  function typingBurst(): void {
-    if (!scene3d) return
-    const { group, addLine, monitorLight } = scene3d
-
-    gsap.killTweensOf(group.scale)
-    gsap
-      .timeline()
-      .to(group.scale, { x: 1.03, y: 1.03, z: 1.03, duration: 0.18, ease: 'power2.out' })
-      .to(group.scale, { x: 1, y: 1, z: 1, duration: 0.5, ease: 'elastic.out(1, 0.4)' })
-
-    // rajada de "digitação": novas linhas de código aparecendo rápido
-    let i = 0
-    const burst = setInterval(() => {
-      addLine()
-      scene3d?.screenTexture && (scene3d.screenTexture.needsUpdate = true)
-      i += 1
-      if (i >= 5) clearInterval(burst)
-    }, 60)
-
-    gsap.killTweensOf(monitorLight)
-    gsap.to(monitorLight, { intensity: 2.4, duration: 0.15, yoyo: true, repeat: 1 })
-  }
-
-  function onClick(): void {
-    if (!scene3d || !camera) return
-    raycaster.setFromCamera(pointer, camera)
-    typingBurst()
   }
 
   function animate(): void {
@@ -717,11 +677,6 @@ export function useThreeScene(canvasRef: Ref<HTMLCanvasElement | null>) {
     cancelAnimationFrame(raf)
     window.removeEventListener('resize', resize)
     window.removeEventListener('scroll', onScroll)
-    const canvas = canvasRef.value
-    if (canvas) {
-      canvas.removeEventListener('pointermove', onPointerMove)
-      canvas.removeEventListener('click', onClick)
-    }
     scene3d?.screenTexture.dispose()
     scene?.traverse((obj) => {
       const mesh = obj as THREE.Mesh

@@ -11,7 +11,7 @@ export default {
   },
   profile: {
     role: 'Analista de Teste/QA & Desenvolvedor Frontend',
-    location: 'Manaus/AM 🏖',
+    location: 'Manaus/AM, Brasil 🏖',
     summary:
       'Desenvolvo projetos de automação de testes no Frontend e Backend com Cypress, K6, Locust e JavaScript/TypeScript para aplicações web.',
     contactMessage:

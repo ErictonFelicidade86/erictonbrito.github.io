@@ -18,7 +18,9 @@ onBeforeUnmount(dispose)
   width: 100%;
   height: 100%;
   display: block;
-  touch-action: none;
-  cursor: pointer;
+  /* Sem interação (nem clique, nem drag): não deve interceptar ponteiro/
+     toque, senão atrapalha cliques nos botões por cima e o scroll em
+     telas touch. */
+  pointer-events: none;
 }
 </style>

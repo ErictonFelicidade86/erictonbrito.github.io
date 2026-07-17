@@ -9,18 +9,17 @@ Este portfólio foi construído utilizando uma combinação de tecnologias moder
 - **Vue 3**: Framework reativo, usando `<script setup>` e Composition API.
 - **TypeScript**: Tipagem estática em modo estrito (`strict`), em todos os componentes e composables.
 - **Vuetify**: Biblioteca de componentes Material Design (app-bar, cards, timeline, grid).
-- **Three.js**: Renderização da cena 3D (mesa, monitor, personagem digitando, sombras reais).
-- **GSAP + ScrollTrigger**: Animações de entrada dos cards conforme o scroll, e as transições de clique/digitação da cena 3D.
+- **Three.js**: Chuva de código (estilo Matrix) animada no fundo da página (WebGL).
+- **GSAP + ScrollTrigger**: Animações de entrada dos cards conforme o scroll, e a cena "codando" do hero.
 - **vue-i18n**: Internacionalização (PT/EN) com troca de idioma via bandeiras no cabeçalho.
 - **vue-router**: Navegação em hash mode (compatível com hospedagem estática, sem rewrite de servidor).
 - **Vite**: Build e dev server.
 - **Yarn**: Gerenciador de pacotes do projeto.
-- **Blender**: Reservado para os futuros modelos `.glb`/`.gltf` do avatar 3D — hoje o avatar e a mesa são gerados 100% via código (primitivas do Three.js), sem depender de modelo externo.
 
 ## 🌐 Destaques do Projeto
 
-- Cena 3D interativa no topo da página: avatar digitando em uma mesa, com código "rodando" na tela do monitor e do notebook em tempo real.
-- Sombras reais e textura de madeira procedural, deixando o cenário 3D mais fiel a um ambiente real.
+- Hero com uma cena animada (DOM + CSS + GSAP, sem WebGL) de um dev de costas codando um teste, rodando a suíte no terminal e comemorando quando passa — narrativa autoral, na paleta violeta/teal do site.
+- Fundo animado de chuva de código (Three.js/WebGL) atrás de todo o conteúdo da página.
 - Animações de entrada (fade + slide) nos cards de Experiência, Formação e Projetos conforme o usuário rola a página.
 - Internacionalização completa (PT/EN) com troca de idioma via bandeiras no menu.
 - Design responsivo para dispositivos móveis, tablets e desktop.
@@ -50,7 +49,6 @@ Para forçar um novo deploy sem dar push, é só rodar o workflow manualmente pe
   <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" />
   <img src="https://img.shields.io/badge/Yarn-2C8EBB?style=for-the-badge&logo=yarn&logoColor=white" />
   <img src="https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=white" />
-  <img src="https://img.shields.io/badge/Blender-F5792A?style=for-the-badge&logo=blender&logoColor=white" />
   <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" />
   <img src="https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white" />
 </p>

@@ -1,4 +1,8 @@
 export default {
+  intro: {
+    title: 'Loading portfolio',
+    enter: 'Enter portfolio',
+  },
   nav: {
     experience: 'Experience',
     education: 'Education',

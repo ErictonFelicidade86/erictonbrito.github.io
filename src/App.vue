@@ -1,4 +1,6 @@
 <template>
+  <IntroScreen v-if="showIntro" @done="onIntroDone" />
+
   <div class="tech-bg" aria-hidden="true">
     <div class="tech-glow tech-glow--primary"></div>
     <div class="tech-glow tech-glow--secondary"></div>
@@ -77,9 +79,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import MatrixRain from './components/MatrixRain.vue'
+import IntroScreen from './components/IntroScreen.vue'
 import { setLocale, type SupportedLocale } from './i18n'
 import brasilFlag from './assets/flags/brasil.png'
 import usaFlag from './assets/flags/usa.png'
@@ -88,6 +91,41 @@ const { t, locale } = useI18n()
 
 const drawer = ref(false)
 const scrolled = ref(false)
+
+// Tela de entrada: uma vez por aba/sessão (sessionStorage, não localStorage
+// — reabrir o site num dia diferente mostra de novo), e nunca pra quem tem
+// prefers-reduced-motion ativo, já que ela é fundamentalmente uma animação.
+const INTRO_SESSION_KEY = 'portfolio-intro-seen'
+const showIntro = ref(computeInitialShowIntro())
+
+function computeInitialShowIntro(): boolean {
+  try {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false
+    return sessionStorage.getItem(INTRO_SESSION_KEY) !== '1'
+  } catch {
+    // sessionStorage pode falhar (aba anônima com storage bloqueado etc.);
+    // nesse caso é mais seguro mostrar a intro do que travar a página.
+    return true
+  }
+}
+
+function onIntroDone(): void {
+  showIntro.value = false
+  try {
+    sessionStorage.setItem(INTRO_SESSION_KEY, '1')
+  } catch {
+    // sem problema não persistir — só volta a aparecer na próxima aba.
+  }
+}
+
+// Trava o scroll da página por trás enquanto a intro está em tela.
+watch(
+  showIntro,
+  (isVisible) => {
+    document.body.style.overflow = isVisible ? 'hidden' : ''
+  },
+  { immediate: true },
+)
 
 function onScroll(): void {
   scrolled.value = window.scrollY > 40
@@ -105,7 +143,10 @@ function scrollToSection(id: string): void {
 }
 
 onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }))
-onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', onScroll)
+  document.body.style.overflow = ''
+})
 </script>
 
 <style scoped>

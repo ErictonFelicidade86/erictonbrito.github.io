@@ -126,7 +126,7 @@
         <h2 class="section-title">{{ t('projects.title') }}</h2>
         <p class="text-body-1 mb-6">{{ t('projects.subtitle') }}</p>
 
-        <v-row>
+        <v-row v-if="!useProjectsCarousel">
           <v-col v-for="proj in projects" :key="proj.url" cols="12" sm="6" md="4">
             <v-card
               class="pa-4 h-100 project-card reveal-card"
@@ -141,6 +141,41 @@
             </v-card>
           </v-col>
         </v-row>
+
+        <!-- Acima de PROJECTS_CAROUSEL_THRESHOLD projetos a grade vira
+             carrossel, em fatias de PROJECTS_PER_SLIDE. O Vuetify cuida da
+             troca de slide (arraste, setas, teclado); o GSAP só anima a
+             entrada dos cards do slide que acabou de aparecer. -->
+        <v-carousel
+          v-else
+          v-model="activeSlide"
+          class="projects-carousel"
+          height="auto"
+          hide-delimiter-background
+          show-arrows="hover"
+          cycle
+          :interval="6000"
+        >
+          <v-carousel-item v-for="(slide, i) in projectSlides" :key="i">
+            <div :ref="(el) => setSlideRef(el as Element | null, i)" class="projects-carousel-slide">
+              <v-row class="projects-carousel-row">
+                <v-col v-for="proj in slide" :key="proj.url" cols="12" sm="6" md="4">
+                  <v-card
+                    class="pa-4 h-100 project-card reveal-card"
+                    elevation="4"
+                    :href="proj.url"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <v-icon icon="mdi-github" size="28" class="mb-2" />
+                    <h3 class="text-subtitle-1 font-weight-bold">{{ proj.title }}</h3>
+                    <p class="text-body-2 text-medium-emphasis">{{ proj.subtitle }}</p>
+                  </v-card>
+                </v-col>
+              </v-row>
+            </div>
+          </v-carousel-item>
+        </v-carousel>
       </v-container>
     </section>
 
@@ -169,8 +204,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import gsap from 'gsap'
 import CodingScene from '../components/CodingScene.vue'
 import { profile } from '../data/resume'
 import { useScrollReveal } from '../composables/useScrollReveal'
@@ -189,6 +225,56 @@ const educationSkills = computed(() => tm('education.skills') as unknown as stri
 const courses = computed(() => tm('education.courses') as unknown as Course[])
 const languages = computed(() => tm('education.languages') as unknown as string[])
 const projects = computed(() => tm('projects.items') as unknown as Project[])
+
+// Grade normal até 9 projetos; acima disso vira carrossel — sem isso a
+// seção cresceria pra baixo sem fim conforme novos repositórios entram.
+const PROJECTS_CAROUSEL_THRESHOLD = 9
+const PROJECTS_PER_SLIDE = 3
+const useProjectsCarousel = computed(() => projects.value.length > PROJECTS_CAROUSEL_THRESHOLD)
+const projectSlides = computed<Project[][]>(() => {
+  const slides: Project[][] = []
+  for (let i = 0; i < projects.value.length; i += PROJECTS_PER_SLIDE) {
+    slides.push(projects.value.slice(i, i + PROJECTS_PER_SLIDE))
+  }
+  return slides
+})
+
+const activeSlide = ref(0)
+const slideRefs: (HTMLElement | null)[] = []
+function setSlideRef(el: Element | null, i: number): void {
+  slideRefs[i] = el as HTMLElement | null
+}
+
+function prefersReducedMotion(): boolean {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+}
+
+// Vuetify cuida da transição entre slides (arraste, setas, troca);
+// o GSAP só anima por cima a entrada dos cards do slide que acabou de
+// ficar ativo — mesmo princípio do useScrollReveal, mas disparado pela
+// troca de slide em vez do scroll.
+function animateSlide(index: number): void {
+  const el = slideRefs[index]
+  if (!el) return
+  const cards = el.querySelectorAll('.project-card')
+  if (prefersReducedMotion()) {
+    gsap.set(cards, { autoAlpha: 1, y: 0 })
+    return
+  }
+  gsap.fromTo(
+    cards,
+    { autoAlpha: 0, y: 24 },
+    { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.08, ease: 'power2.out' },
+  )
+}
+
+watch(activeSlide, (index) => {
+  nextTick(() => animateSlide(index))
+})
+
+onMounted(() => {
+  if (useProjectsCarousel.value) nextTick(() => animateSlide(0))
+})
 
 function scrollToSection(id: string): void {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
@@ -424,6 +510,41 @@ function scrollToSection(id: string): void {
 
 .project-card:hover {
   transform: translateY(-4px);
+}
+
+.projects-carousel-slide {
+  /* Espaço lateral pras setas (show-arrows="hover") não ficarem coladas
+     em cima do primeiro/último card, e espaço embaixo pros indicadores de
+     slide — que o Vuetify posiciona de forma absoluta colada no rodapé do
+     carrossel (com height="auto" isso sobrepõe o último card se não
+     reservar essa faixa aqui). */
+  padding: 4px 40px 64px;
+}
+
+.projects-carousel-row {
+  margin: 0;
+}
+
+:deep(.projects-carousel .v-carousel__controls) {
+  height: 40px;
+}
+
+/* Os pontos usam a cor de ícone padrão do tema, que fica escura demais
+   sobre esse fundo — força branco, com o slide ativo em opacidade cheia
+   e os demais mais apagados (padrão comum de indicador de carrossel). */
+:deep(.projects-carousel .v-carousel__controls__item .v-icon) {
+  color: #ffffff;
+  opacity: 0.45;
+}
+
+:deep(.projects-carousel .v-carousel__controls__item.v-btn--active .v-icon) {
+  opacity: 1;
+}
+
+@media (max-width: 600px) {
+  .projects-carousel-slide {
+    padding: 4px 8px 64px;
+  }
 }
 
 .footer {

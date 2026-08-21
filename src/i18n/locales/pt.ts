@@ -1,4 +1,8 @@
 export default {
+  intro: {
+    title: 'Carregando portfólio',
+    enter: 'Acessar portfólio',
+  },
   nav: {
     experience: 'Experiência',
     education: 'Formação',

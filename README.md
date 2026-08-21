@@ -53,6 +53,6 @@ Para forçar um novo deploy sem dar push, é só rodar o workflow manualmente pe
   <img src="https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white" />
 </p>
 
-## 🌐 Link do Projeto
+## 🌐 Link do Portifolio
 
-# [Erictonbrito](https://github.com/ErictonFelicidade86/erictonbrito.github.io)
+# [ErictonBrito](https://erictonfelicidade86.github.io/erictonbrito.github.io/#/)

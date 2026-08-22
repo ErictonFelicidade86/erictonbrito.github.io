@@ -239,12 +239,15 @@ onBeforeUnmount(() => {
    texto. Todas as posições/tamanhos abaixo são relativos a este box. */
 .stage {
   position: absolute;
-  /* left+right (sem width fixo) faz o palco preencher exatamente o vão
-     entre o card de texto e a borda direita, com folga igual dos dois
-     lados — um width com max-width fixo deixava sobra maior à esquerda
-     em telas largas. */
-  left: 27%;
-  right: 1%;
+  /* left/right pequenos: quem afasta o palco do card de texto agora é o
+     .hero-canvas (ver HomeView.vue), que já fica posicionado/limitado
+     coladinho na borda direita do card. Esse box aqui só precisa de uma
+     margem interna mínima — se usasse 27% como antes, essa % incidiria
+     de novo sobre a largura do .hero-canvas (que também é limitada) e o
+     desenho voltaria a nascer bem longe do card, mesmo com o container
+     já ajustado. */
+  left: 5%;
+  right: 3%;
   top: 50%;
   transform: translateY(-50%);
   aspect-ratio: 16 / 12;

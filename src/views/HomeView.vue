@@ -296,15 +296,31 @@ function scrollToSection(id: string): void {
   z-index: 0;
 }
 
-/* Nessas larguras "de meio-termo" (tablet / notebook pequeno) o card de
-   texto ocupa uma fatia maior da tela e a cena passa a colidir com ele —
-   não tem espaço limpo pra encaixar os dois lado a lado. Mais simples
-   esconder a cena aqui do que forçar um layout espremido; ela volta a
-   aparecer no mobile (empilhada abaixo do card) e no desktop bem largo
-   (espaço de sobra ao lado do card). */
-@media (min-width: 601px) and (max-width: 1800px) {
+/* No tablet (601-959px) o texto ainda ocupa a coluna inteira (v-col só
+   vira md=6 a partir de 960px), então não tem como encaixar os dois lado
+   a lado sem colidir — mais simples esconder a cena aqui. Ela volta no
+   mobile (empilhada, card quase opaco cobrindo por cima — ver regra de
+   .hero-text mais abaixo) e a partir de 960px, pela regra seguinte. */
+@media (min-width: 601px) and (max-width: 959px) {
   .hero-canvas {
     display: none;
+  }
+}
+
+/* A partir daqui o texto passa a ocupar só a coluna esquerda (v-col
+   md=6, sem gutters, colada na borda). Um `width: %` sozinho aqui fazia o
+   vão vazio entre o card e o desenho crescer sem parar em telas bem
+   largas (a caixa antiga com `width: 54%` chegava a deixar mais de 900px
+   de vão num monitor grande) — por isso `left` fixo bem perto da borda
+   do card (a cena começa logo ali) e um `max-width` que trava o tamanho
+   da caixa. O CodingScene também teve sua margem interna reduzida (ver
+   `.stage` em CodingScene.vue) pra não recriar esse vão de dentro. */
+@media (min-width: 960px) {
+  .hero-canvas {
+    inset: 0 0 0 auto;
+    left: 580px;
+    width: auto;
+    max-width: 950px;
   }
 }
 

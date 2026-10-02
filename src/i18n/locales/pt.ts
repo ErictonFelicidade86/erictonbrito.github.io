@@ -8,6 +8,7 @@ export default {
     education: 'Formação',
     projects: 'Projetos',
     contact: 'Contato',
+    backToTop: 'Voltar ao topo',
   },
   hero: {
     greeting: 'Olá, eu sou',

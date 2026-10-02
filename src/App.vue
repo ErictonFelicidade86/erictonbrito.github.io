@@ -75,6 +75,19 @@
     <v-main>
       <router-view />
     </v-main>
+
+    <Transition name="back-to-top">
+      <v-btn
+        v-if="atBottom"
+        class="back-to-top"
+        icon="mdi-arrow-up"
+        color="primary"
+        size="large"
+        elevation="8"
+        :aria-label="t('nav.backToTop')"
+        @click="scrollToTop"
+      />
+    </Transition>
   </v-app>
 </template>
 
@@ -91,6 +104,10 @@ const { t, locale } = useI18n()
 
 const drawer = ref(false)
 const scrolled = ref(false)
+const atBottom = ref(false)
+// Margem de tolerância: considera "fim da página" um pouco antes do último
+// pixel, senão em alguns navegadores (zoom, arredondamento) o botão nunca aparece.
+const BOTTOM_THRESHOLD = 80
 
 // Tela de entrada: uma vez por aba/sessão (sessionStorage, não localStorage
 // — reabrir o site num dia diferente mostra de novo), e nunca pra quem tem
@@ -129,6 +146,13 @@ watch(
 
 function onScroll(): void {
   scrolled.value = window.scrollY > 40
+  const scrollBottom = window.innerHeight + window.scrollY
+  atBottom.value = scrollBottom >= document.documentElement.scrollHeight - BOTTOM_THRESHOLD
+}
+
+function scrollToTop(): void {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' })
 }
 
 function changeLocale(lang: SupportedLocale): void {
@@ -142,7 +166,11 @@ function scrollToSection(id: string): void {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 }
 
-onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }))
+onMounted(() => {
+  window.addEventListener('scroll', onScroll, { passive: true })
+  // Se a página recarregar já rolada até o fim, mostra o botão sem precisar rolar.
+  onScroll()
+})
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', onScroll)
   document.body.style.overflow = ''
@@ -150,6 +178,25 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
+
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 3;
+}
+
+.back-to-top-enter-active,
+.back-to-top-leave-active {
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.back-to-top-enter-from,
+.back-to-top-leave-to {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
 .app-logo {
   font-weight: 800;
   font-size: 1.3rem;

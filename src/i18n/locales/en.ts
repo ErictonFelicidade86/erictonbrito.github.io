@@ -8,6 +8,7 @@ export default {
     education: 'Education',
     projects: 'Projects',
     contact: 'Contact',
+    backToTop: 'Back to top',
   },
   hero: {
     greeting: 'Hello, I am',

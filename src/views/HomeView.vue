@@ -438,7 +438,6 @@ function scrollToSection(id: string): void {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 340px;
   box-sizing: border-box;
 }
 
@@ -460,45 +459,20 @@ function scrollToSection(id: string): void {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
+  justify-content: flex-start;
 }
 
 .experience-card__description {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
   flex: 0 0 auto;
 }
 
 .experience-card__skills {
   flex: 0 0 auto;
-  overflow: hidden;
-  max-height: 68px;
 }
 
 @media (max-width: 600px) {
   .experience-card {
-    height: auto !important;
-    min-height: 0 !important;
     margin-bottom: 8px;
-  }
-
-  .experience-card__body {
-    overflow: visible !important;
-    justify-content: flex-start;
-  }
-
-  .experience-card__description {
-    -webkit-line-clamp: unset !important;
-    overflow: visible !important;
-  }
-
-  .experience-card__skills {
-    max-height: none !important;
-    overflow: visible !important;
   }
 }
 

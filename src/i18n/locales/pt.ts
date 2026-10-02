@@ -25,6 +25,19 @@ export default {
     title: 'Experiência',
     items: [
       {
+        company: 'DBC Company',
+        role: 'Analista de Qualidade Pleno - Meios de pagamento e adquirência (cliente: Getnet)',
+        period: 'Nov/2025 – Out/2026',
+        description:
+          'Testes manuais funcionais e de integração em fluxos de credenciamento, transações, cancelamentos e estornos, executados via APIs REST (Postman e Bruno) e canal online. Validação ponta a ponta de transações, cancelamentos e estornos: conferência dos dados no BASE24, do processamento no Payware e do registro das operações no PRM. Execução de credenciamentos de estabelecimentos e validação dos produtos de adquirência habilitados no CRM (Siebel) e demais canais. Elaboração de planos de teste, planilhas de homologação UAT e relatórios de finalização de testes. Migração de coleções Postman para Bruno, com adaptação dos scripts de validação. Gestão de casos de teste, evidências e defeitos no Jira com Zephyr.',
+        skills: [
+          'Teste Manual',
+          'Teste Funcional',
+          'Teste Integração',
+          'Teste de API',
+        ],
+      },
+      {
         company: 'NEOWAY',
         role: 'Analista de Qualidade Pleno',
         period: 'Jun/2025 – Nov/2025',
@@ -98,21 +111,24 @@ export default {
       'Minha mais recente experiência acadêmica foi a Pós-Graduação 🎓 que fiz na Faveni. Além disso me mantenho sempre atualizado com cursos intensivos online.',
     academicTitle: 'Formação Acadêmica',
     degrees: [
-      { title: 'Bacharel em Sistemas de Informação', period: '' },
+      { title: 'Bacharel em Sistemas de Informação', school: 'Uninorte', period: '2018 – 2021' },
       { title: 'MBA – Gestão da Qualidade em Software', school: 'Faveni', period: '2024 – 2025' },
     ],
     skillsTitle: 'Habilidades Técnicas',
     skills: [
+      'Criação de agente de IA para automatizar atividades',
+      'Frontend: HTML5, CSS3, Bootstrap, Angular, Angular Material, Vue (Básico)',
       'Linguagens: JavaScript, TypeScript, Python (Básico), Java (Básico), C# (Básico)',
       'Automação de Testes: Cypress, K6, Playwright, Locust, Robot Framework, Rest Assured',
       'Banco de Dados & Ferramentas: PostgreSQL, MongoDB, DBeaver',
-      'APIs & Ferramentas: Postman, Insomnia, Swagger',
+      'APIs & Ferramentas: Postman, Insomnia, Swagger, Bruno',
       'DevOps & Versionamento: Git, GitLab, Docker, GitHub Actions, Jenkins',
       'Metodologia: Scrum, Kanban',
-      'Frontend: HTML5, CSS3, Bootstrap, Angular, Angular Material, Vue (Básico)',
     ],
     coursesTitle: 'Cursos Intensivos',
     courses: [
+      { title: 'Frontend & UX/UI', provider: 'Origamid' },
+      { title: 'javascript Completo com ES6', provider: 'Origamid' },
       { title: 'Cypress - Nível Expert', provider: 'Ninja do Cypress' },
       { title: 'Cypress - Nível Advanced', provider: 'Ninja do Cypress' },
       { title: 'Cypress - Nível Foundations', provider: 'Ninja do Cypress' },

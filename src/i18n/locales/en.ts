@@ -25,6 +25,19 @@ export default {
     title: 'Experience',
     items: [
       {
+        company: 'DBC Company',
+        role: 'Mid-level QA Analyst - Payments and Acquiring (client: Getnet)',
+        period: 'Nov/2025 – Out/2026',
+        description:
+          'Manual functional and integration testing of merchant onboarding, transaction, cancellation, and refund flows, executed via REST APIs (Postman and Bruno) and the online channel. End-to-end validation of transactions, cancellations, and refunds: verifying data in BASE24, processing in Payware, and operation records in PRM. Merchant onboarding execution and validation of acquiring products enabled in the CRM (Siebel) and other channels. Creation of test plans, UAT sign-off spreadsheets, and test completion reports. Migration of Postman collections to Bruno, including adaptation of validation scripts. Management of test cases, evidence, and defects in Jira with Zephyr.',
+        skills: [
+          'Manual Testing',
+          'Functional Testing',
+          'Integration Testing',
+          'API Testing',
+        ],
+      },
+      {
         company: 'NEOWAY',
         role: 'Mid-level Quality Analyst',
         period: 'Jun/2025 – Nov/2025',
@@ -98,21 +111,25 @@ export default {
       'My most recent academic experience was a Postgraduate degree 🎓 at Faveni. I also keep myself up to date with intensive online courses.',
     academicTitle: 'Academic Background',
     degrees: [
-      { title: "Bachelor's Degree in Information Systems", period: '' },
+      { title: "Bachelor's Degree in Information Systems", school: 'Uninorte', period: '2018 – 2021' },
       { title: 'MBA – Software Quality Management', school: 'Faveni', period: '2024 – 2025' },
     ],
     skillsTitle: 'Technical Skills',
     skills: [
+      'Building AI agents to automate tasks',
+      'Frontend: HTML5, CSS3, Bootstrap, Angular, Angular Material, Vue (Basic)',
       'Languages: JavaScript, TypeScript, Python (Basic), Java (Basic), C# (Basic)',
       'Test Automation: Cypress, K6, Playwright, Locust, Robot Framework, Rest Assured',
       'Databases & Tools: PostgreSQL, MongoDB, DBeaver',
-      'APIs & Tools: Postman, Insomnia, Swagger',
+      'APIs & Tools: Postman, Insomnia, Swagger, Bruno',
       'DevOps & Version Control: Git, GitLab, Docker, GitHub Actions, Jenkins',
       'Methodology: Scrum, Kanban',
-      'Frontend: HTML5, CSS3, Bootstrap, Angular, Angular Material, Vue (Basic)',
+      
     ],
     coursesTitle: 'Intensive Courses',
     courses: [
+      { title: 'Frontend & UX/UI', provider: 'Origamid' },
+      { title: 'Complete JavaScript with ES6', provider: 'Origamid' },
       { title: 'Cypress - Expert Level', provider: 'Ninja do Cypress' },
       { title: 'Cypress - Advanced Level', provider: 'Ninja do Cypress' },
       { title: 'Cypress - Foundations Level', provider: 'Ninja do Cypress' },
